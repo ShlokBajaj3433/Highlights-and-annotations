@@ -1,0 +1,44 @@
+{
+  "name": "copage",
+  "version": "0.1.0",
+  "description": "Real-time collaborative browsing extension - presence, highlights, and shared research memory",
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch --mode development",
+    "build": "vite build --mode production",
+    "build:chrome": "vite build --mode production --config vite.config.chrome.ts",
+    "build:firefox": "vite build --mode production --config vite.config.firefox.ts",
+    "lint": "biome check --write .",
+    "lint:ci": "biome check .",
+    "format": "biome format --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
+  },
+  "keywords": [
+    "browser-extension",
+    "manifest-v3",
+    "collaborative-browsing",
+    "presence",
+    "highlights",
+    "research"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@playwright/test": "^1.48.2",
+    "@types/chrome": "^0.0.280",
+    "@types/jsdom": "^30.0.0",
+    "@vitest/coverage-v8": "^2.1.4",
+    "husky": "^9.1.6",
+    "jsdom": "^29.1.1",
+    "terser": "^5.51.4",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "vitest": "^2.1.4",
+    "webextension-polyfill": "^0.12.0"
+  }
+}

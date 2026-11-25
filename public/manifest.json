@@ -1,0 +1,103 @@
+{
+  "manifest_version": 3,
+  "name": "Copage",
+  "short_name": "Copage",
+  "version": "0.1.0",
+  "description": "Real-time collaborative browsing — presence, highlights, and shared research memory for teams",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "identity",
+    "sidePanel",
+    "contextMenus",
+    "scripting",
+    "alarms",
+    "tabs",
+    "offscreen",
+    "notifications"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "optional_host_permissions": [],
+  "incognito": "not_allowed",
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ],
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "offscreen": {
+    "reasons": ["DOM_SCRAPING", "WORKERS"],
+    "minimize": true
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Copage",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "commands": {
+    "open-side-panel": {
+      "suggested_key": {
+        "default": "Alt+Shift+C",
+        "mac": "Alt+Shift+C"
+      },
+      "description": "Open Copage side panel"
+    },
+    "toggle-highlight-mode": {
+      "suggested_key": {
+        "default": "Alt+Shift+H",
+        "mac": "Alt+Shift+H"
+      },
+      "description": "Toggle highlight mode"
+    },
+    "pause-resume-sharing": {
+      "suggested_key": {
+        "default": "Alt+Shift+P",
+        "mac": "Alt+Shift+P"
+      },
+      "description": "Pause/Resume sharing"
+    },
+    "focus-search": {
+      "suggested_key": {
+        "default": "Alt+Shift+F",
+        "mac": "Alt+Shift+F"
+      },
+      "description": "Focus search in side panel"
+    },
+    "new-page-note": {
+      "suggested_key": {
+        "default": "Alt+Shift+N",
+        "mac": "Alt+Shift+N"
+      },
+      "description": "Create new page note"
+    }
+  },
+  "options_page": "options.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*", "styles/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "minimum_chrome_version": "114"
+}

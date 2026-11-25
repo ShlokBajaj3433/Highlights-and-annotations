@@ -1,0 +1,109 @@
+{
+  "manifest_version": 3,
+  "name": "Copage",
+  "short_name": "Copage",
+  "version": "0.1.0",
+  "description": "Real-time collaborative browsing — presence, highlights, and shared research memory for teams",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "identity",
+    "contextMenus",
+    "scripting",
+    "alarms",
+    "tabs",
+    "notifications",
+    "sidebar"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "optional_host_permissions": [],
+  "incognito": "not_allowed",
+  "background": {
+    "scripts": ["background.js"],
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ],
+  "sidebar_action": {
+    "default_panel": "sidepanel.html",
+    "default_title": "Copage",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png"
+    }
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Copage",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "commands": {
+    "open-side-panel": {
+      "suggested_key": {
+        "default": "Alt+Shift+C",
+        "mac": "Alt+Shift+C"
+      },
+      "description": "Open Copage sidebar"
+    },
+    "toggle-highlight-mode": {
+      "suggested_key": {
+        "default": "Alt+Shift+H",
+        "mac": "Alt+Shift+H"
+      },
+      "description": "Toggle highlight mode"
+    },
+    "pause-resume-sharing": {
+      "suggested_key": {
+        "default": "Alt+Shift+P",
+        "mac": "Alt+Shift+P"
+      },
+      "description": "Pause/Resume sharing"
+    },
+    "focus-search": {
+      "suggested_key": {
+        "default": "Alt+Shift+F",
+        "mac": "Alt+Shift+F"
+      },
+      "description": "Focus search in sidebar"
+    },
+    "new-page-note": {
+      "suggested_key": {
+        "default": "Alt+Shift+N",
+        "mac": "Alt+Shift+N"
+      },
+      "description": "Create new page note"
+    }
+  },
+  "options_page": "options.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*", "styles/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "copage@example.com",
+      "strict_min_version": "120.0"
+    }
+  }
+}
